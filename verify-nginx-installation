@@ -1,0 +1,21 @@
+---
+- name: Verify Nginx Installation
+  hosts: all
+  tasks:
+    - name: Update the package cache
+      apt:
+        update_cache: yes
+    - name: Install Nginx Web Server
+      apt:
+        name: nginx
+        state: present
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+    - name: Check if Nginx is active and running
+      shell: "systemctl is-active nginx"
+      register: nginx_status
+    - name: Print Nginx service status
+      debug:
+        msg: "Nginx status: {{ nginx_status.stdout }}"
