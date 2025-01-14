@@ -1,0 +1,11 @@
+---
+# create_file.yml
+- name: Simple Playbook to Create a File
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Create a file with content
+      copy:
+        dest: /tmp/hello_world.txt
+        content: "Hello, this is a file created by Ansible!"
