@@ -4,11 +4,10 @@
   become: yes
   tasks:
     - name: Update the package cache
-      yum:
-        name: "*"
-        state: latest
+      become: yes
+      apt:
         update_cache: yes
-    
+
     - name: Install Nginx
       yum:
         name: nginx
