@@ -2,10 +2,10 @@
 - name: Install Nginx Web Server on CentOS
   hosts: all
   become: yes
+  become_user: root
   tasks:
     - name: Update the package cache
-      become: yes
-      ansible.builtin.apt:
+      apt:
         update_cache: yes
 
     - name: Install Nginx
@@ -18,7 +18,3 @@
         name: nginx
         state: started
         enabled: yes
-
-
-
-
