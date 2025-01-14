@@ -2,22 +2,23 @@
 - name: Install Nginx Web Server on CentOS
   hosts: all
   become: yes
-
   tasks:
-    - name: Install EPEL repository (required for Nginx)
+    - name: Update the package cache
       yum:
-        name: epel-release
-        state: present
-
+        name: "*"
+        state: latest
+        update_cache: yes
+    
     - name: Install Nginx
       yum:
         name: nginx
         state: present
-
+    
     - name: Ensure Nginx is running and enabled
       service:
         name: nginx
         state: started
         enabled: yes
+
 
 
